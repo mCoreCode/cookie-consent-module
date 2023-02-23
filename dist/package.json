@@ -1,0 +1,96 @@
+{
+  "name": "@gc/cookies-consent-module",
+  "version": "2.5.3",
+  "description": "GeekCoders cookie consent module",
+  "author": "GeekCoders s.r.o.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.geekcoders.cz/gc/cookies-consent-module"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.modern.js",
+  "unpkg": "./dist/index.umd.js",
+  "source": "./src/index.tsx",
+  "types": "./dist/src/index.d.ts",
+  "engines": {
+    "node": ">=10"
+  },
+  "publishConfig": {
+    "access": "public",
+    "@gc:registry": "https://gitlab.geekcoders.cz/api/v4/projects/43/packages/npm/"
+  },
+  "scripts": {
+    "build": "NODE_ENV=production run-s umd-build modern-build",
+    "start": "NODE_ENV=development yarn run modern",
+    "modern": "microbundle watch --no-compress --format modern,cjs --jsx React.createElement",
+    "modern-build": "microbundle --compress --format modern,cjs --jsx React.createElement --define process.env.NODE_ENV=production --strict",
+    "umd-build": "microbundle --compress --format umd --name GCCookieConsent --jsx React.createElement --external none --define process.env.NODE_ENV=production --strict",
+    "prepare": "run-s build",
+    "test": "run-s test:unit test:lint test:build",
+    "test:build": "run-s build",
+    "test:lint": "eslint .",
+    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
+    "test:watch": "react-scripts test --env=jsdom",
+    "semantic-release": "semantic-release",
+    "format": "prettier --write \"**/*.+(ts|tsx|json|css|md)\""
+  },
+  "peerDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/gitlab": "^7.0.4",
+    "@semantic-release/npm": "^8.0.3",
+    "@tailwindcss/forms": "^0.4.0",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/i18next": "^13.0.0",
+    "@types/i18next-browser-languagedetector": "^3.0.0",
+    "@types/jest": "^25.1.4",
+    "@types/node": "^12.12.38",
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
+    "@types/react-i18next": "^8.1.0",
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.28.0",
+    "autoprefixer": "^9",
+    "cross-env": "^7.0.2",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-tailwindcss": "^2.0.1",
+    "microbundle": "^0.14.2",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^7",
+    "prepend-selector-postcss": "^0.4.7",
+    "prettier": "^2.5.1",
+    "prettier-eslint": "^13.0.0",
+    "prettier-eslint-cli": "^5.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "semantic-release": "^18.0.1",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
+    "typescript": "^3.7.5",
+    "@headlessui/react": "^1.4.3"
+  },
+  "files": [
+    "dist"
+  ],
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "plugin:prettier/recommended"
+    ]
+  },
+  "dependencies": {
+    "i18next": "^21.6.5",
+    "i18next-browser-languagedetector": "^6.1.2",
+    "react-cookie": "^4.1.1",
+    "react-i18next": "^11.15.3"
+  }
+}
